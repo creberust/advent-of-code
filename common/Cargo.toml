@@ -1,0 +1,13 @@
+[package]
+name = "common"
+version = "0.1.0"
+edition = "2021"
+authors.workspace = true
+description = "Advent of Code library for the common tools used through the events"
+readme.workspace = true
+repository.workspace = true
+license-file.workspace = true
+keywords.workspace = true
+publish.workspace = true
+
+[dependencies]

@@ -1,5 +1,5 @@
 [workspace]
-members = ["aoc", "aoc-2022"]
+members = ["aoc", "aoc-2022", "common"]
 
 [workspace.package]
 authors = ["Creberus <creberus@tutanota.com>"]
