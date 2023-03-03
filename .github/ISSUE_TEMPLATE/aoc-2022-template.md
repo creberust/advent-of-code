@@ -1,7 +1,7 @@
 ---
 name: AoC 2022 Template
 about: Advent of Code 2022 Issue template
-title: 'day_x: Title'
+title: 'Day [DAY]: [TITLE]'
 labels: AoC 2022
 assignees: Creberus
 
@@ -9,9 +9,9 @@ assignees: Creberus
 
 # Advent of Code 2022
 
-## Day x: Title
+## Day [DAY]: [TITLE]
 
 - [ ] Part One
 - [ ] Part Two
 
-Link: TODO
+Link: https://adventofcode.com/2022/day/[DAY]
