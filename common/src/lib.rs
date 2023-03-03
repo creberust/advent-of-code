@@ -1,8 +1,8 @@
 /// The Advent of Code year
-pub struct Year(u16);
+pub struct Year(pub u16);
 
 /// The day of the puzzle
-pub struct Day(u8);
+pub struct Day(pub u8);
 
 /// The part of the puzzle to solve
 pub enum Part {
@@ -21,7 +21,7 @@ pub trait Event {
     /// # Parameters
     /// * `day` - The day of the event to solve
     /// * `part` - The part(s) of the puzzle to solve
-    fn solve(day: Day, part: Part);
+    fn solve(&self, day: Day, part: Part);
 }
 
 /// Abstraction for an AoC puzzle
@@ -30,5 +30,5 @@ pub trait Puzzle {
     ///
     /// # Parameters
     /// * `part` - The part(s) of the puzzle to solve
-    fn solve(part: Part);
+    fn solve(&self, part: Part);
 }

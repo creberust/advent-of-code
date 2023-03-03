@@ -11,3 +11,4 @@ keywords.workspace = true
 publish.workspace = true
 
 [dependencies]
+common = { version = "0.1.0", path = "../common" }
