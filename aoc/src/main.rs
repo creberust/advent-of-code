@@ -2,5 +2,5 @@ mod cli;
 use cli::*;
 
 fn main() {
-    let args = get_cli_arg();
+    let _ = get_cli_arg();
 }
