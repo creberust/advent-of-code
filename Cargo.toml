@@ -1,2 +1,11 @@
 [workspace]
 members = ["aoc"]
+
+[workspace.package]
+authors = ["Creberus <creberus@tutanota.com>"]
+readme = "README.md"
+repository = "https://github.com/Creberus/advent-of-code"
+license-file = "LICENSE"
+keywords = ["adventofcode"]
+publish = false
+
