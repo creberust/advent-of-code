@@ -9,5 +9,3 @@ repository.workspace = true
 license-file.workspace = true
 keywords.workspace = true
 publish.workspace = true
-
-[dependencies]
