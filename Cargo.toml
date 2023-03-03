@@ -1,0 +1,17 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+authors = ["Creberus <creberus@tutanota.com>"]
+edition = "2021"
+description = "Advent of Code binary that launch the exercices for all the years"
+readme = "README.md"
+repository = "https://github.com/Creberus/advent-of-code"
+license-file = "LICENSE"
+keywords = ["adventofcode"]
+publish = false
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
