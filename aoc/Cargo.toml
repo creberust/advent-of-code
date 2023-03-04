@@ -1,0 +1,16 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+edition = "2021"
+authors.workspace = true
+description = "Advent of Code binary that launch the exercices for all the years"
+readme.workspace = true
+repository.workspace = true
+license-file.workspace = true
+keywords.workspace = true
+publish.workspace = true
+
+[dependencies]
+aoc-2022 = { version = "0.0.0", path = "../aoc-2022" }
+clap = { version = "4.1.8", features = ["derive"] }
+common = { version = "0.1.0", path = "../common" }
