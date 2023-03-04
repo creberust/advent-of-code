@@ -1,4 +1,4 @@
-use std::fmt::Display;
+use std::{fmt::Display, path::Path};
 
 /// The Advent of Code year
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -40,7 +40,7 @@ pub trait Event {
     /// # Parameters
     /// * `day` - The day of the event to solve
     /// * `part` - The part(s) of the puzzle to solve
-    fn solve(&self, day: Day, part: Part);
+    fn solve(&self, day: Day, input: &Path, part: Part);
 }
 
 impl Display for dyn Event {
@@ -61,7 +61,7 @@ pub trait Puzzle {
     ///
     /// # Parameters
     /// * `part` - The part(s) of the puzzle to solve
-    fn solve(&self, part: Part);
+    fn solve(&self, input: &Path, part: Part);
 }
 
 impl Display for dyn Puzzle {

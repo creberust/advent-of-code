@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, path::Path};
 
 use common::*;
 
@@ -25,13 +25,13 @@ impl Event for Event2022 {
         self.year
     }
 
-    fn solve(&self, day: Day, part: Part) {
+    fn solve(&self, day: Day, input: &Path, part: Part) {
         let puzzle = self.puzzles.get(&day);
 
         match puzzle {
             Some(puzzle) => {
                 println!("\t{}", puzzle);
-                puzzle.solve(part);
+                puzzle.solve(input, part);
             }
             None => unimplemented!(),
         }

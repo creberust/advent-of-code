@@ -1,3 +1,5 @@
+use std::path::Path;
+
 use common::{Day, Part, Puzzle};
 
 mod part_1;
@@ -29,13 +31,13 @@ impl Puzzle for Day1 {
         self.name.clone()
     }
 
-    fn solve(&self, part: Part) {
+    fn solve(&self, input: &Path, part: Part) {
         match part {
-            Part::One => part_1(),
+            Part::One => part_1(input),
             Part::Two => part_2(),
             Part::Both => {
-                self.solve(Part::One);
-                self.solve(Part::Two);
+                self.solve(input, Part::One);
+                self.solve(input, Part::Two);
             }
         }
     }
