@@ -1,16 +1,40 @@
+use std::collections::HashMap;
+
 use common::*;
 
-struct Event2022 {}
+mod day_1;
+
+struct Event2022 {
+    year: Year,
+    puzzles: HashMap<Day, Box<dyn Puzzle>>,
+}
 
 impl Event2022 {
     fn new() -> Self {
-        Self {}
+        let year = Year(2022);
+        let mut puzzles = HashMap::new();
+
+        puzzles.insert(Day(1), day_1::puzzle());
+
+        Self { year, puzzles }
     }
 }
 
 impl Event for Event2022 {
-    fn solve(&self, _: Day, _: Part) {
-        unimplemented!()
+    fn year(&self) -> Year {
+        self.year
+    }
+
+    fn solve(&self, day: Day, part: Part) {
+        let puzzle = self.puzzles.get(&day);
+
+        match puzzle {
+            Some(puzzle) => {
+                println!("\t{}", puzzle);
+                puzzle.solve(part);
+            }
+            None => unimplemented!(),
+        }
     }
 }
 

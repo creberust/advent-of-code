@@ -21,5 +21,6 @@ fn main() {
         _ => unimplemented!(),
     };
 
+    println!("{}", event);
     event.solve(day, part);
 }
