@@ -2,6 +2,7 @@ use std::{fmt::Display, path::Path};
 
 use crate::*;
 
+/// The puzzle of the given day for a given event.
 pub struct Puzzle<S: Fn(&Path)> {
     day: Day,
     name: String,
