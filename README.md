@@ -12,8 +12,6 @@ The choice of Rust is purely to improve my skills and to learn new things, as we
 
 - [2022](aoc-2022/)
 
-> TODO: Add link to the README.md for all the years
-
 ## Link
 
 The AdventofCode website: <https://adventofcode.com/>
