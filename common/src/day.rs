@@ -16,7 +16,12 @@ impl Day {
 impl From<u8> for Day {
     fn from(value: u8) -> Self {
         if value < Self::MIN || value > Self::MAX {
-            panic!("day is not within the range [1, 25]: {}", value);
+            panic!(
+                "The Day is not within the range [{}, {}]: {}",
+                Self::MIN,
+                Self::MAX,
+                value
+            );
         }
 
         Day(value)
