@@ -15,11 +15,13 @@ fn main() {
         },
         None => Part::Both,
     };
+    let input = args.input.as_path();
 
     let event = match year {
         Year(2022) => aoc_2022::event(),
         _ => unimplemented!(),
     };
 
-    event.solve(day, part);
+    println!("{}", event);
+    event.solve(day, input, part);
 }

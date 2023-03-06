@@ -1,3 +1,5 @@
+use std::path::PathBuf;
+
 use clap::{value_parser, Parser, ValueEnum};
 
 #[derive(Parser)]
@@ -10,6 +12,9 @@ pub struct Cli {
     /// The day from the selected advent of code event
     #[arg(value_parser = value_parser!(u8).range(1..=25))]
     pub day: u8,
+
+    /// The path to the input file
+    pub input: PathBuf,
 
     /// The part of the puzzle you want to execute
     ///
