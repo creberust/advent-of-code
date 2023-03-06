@@ -1,7 +1,8 @@
 use std::collections::BinaryHeap;
 use std::io::{self, BufRead, Lines};
+use std::path::Path;
 
-pub fn part_2() {
+pub fn part_2(input: &Path) {
     let mut lines = io::stdin().lines();
 
     let calories = parse_max_calories(&mut lines);

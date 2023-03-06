@@ -6,7 +6,7 @@ mod day_1;
 
 struct Event2022 {
     year: Year,
-    puzzles: HashMap<Day, Box<dyn Puzzle>>,
+    puzzles: HashMap<Day, Puzzle<Box<dyn Fn(&Path)>>>,
 }
 
 impl Event2022 {
