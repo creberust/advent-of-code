@@ -33,3 +33,27 @@ impl Display for Day {
         write!(f, "{}", self.0)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn valid_day() {
+        for day in Day::MIN..=Day::MAX {
+            assert_eq!(Day::from(day), Day(day));
+        }
+    }
+
+    #[test]
+    #[should_panic]
+    fn invalid_day_zero() {
+        let _ = Day::from(Day::MIN - 1);
+    }
+
+    #[test]
+    #[should_panic]
+    fn invalid_day_twenty_six() {
+        let _ = Day::from(Day::MAX + 1);
+    }
+}

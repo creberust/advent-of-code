@@ -31,3 +31,27 @@ impl Display for Year {
         write!(f, "{}", self.0)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn valid_year() {
+        for year in Year::MIN..=Year::MAX {
+            assert_eq!(Year::from(year), Year(year));
+        }
+    }
+
+    #[test]
+    #[should_panic]
+    fn invalid_year_zero() {
+        let _ = Year::from(Year::MIN - 1);
+    }
+
+    #[test]
+    #[should_panic]
+    fn invalid_year_twenty_six() {
+        let _ = Year::from(Year::MAX + 1);
+    }
+}
