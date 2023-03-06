@@ -10,7 +10,7 @@ The choice of Rust is purely to improve my skills and to learn new things, as we
 
 ## Years
 
-- [2022](aoc-2022/README.md)
+- [2022](aoc-2022/)
 
 > TODO: Add link to the README.md for all the years
 
