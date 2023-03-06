@@ -30,7 +30,7 @@ impl Event for Event2022 {
 
         match puzzle {
             Some(puzzle) => {
-                println!("\t{}", puzzle);
+                println!("|---{}", puzzle);
                 puzzle.solve(input, part);
             }
             None => unimplemented!(),

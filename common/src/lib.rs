@@ -83,8 +83,14 @@ impl<S: Fn(&Path)> Puzzle<S> {
     /// * `part` - The part(s) of the puzzle to solve
     pub fn solve(&self, input: &Path, part: Part) {
         match part {
-            Part::One => (self.part_1)(input),
-            Part::Two => (self.part_2)(input),
+            Part::One => {
+                println!("    |---Part One");
+                (self.part_1)(input);
+            }
+            Part::Two => {
+                println!("    \\---Part Two");
+                (self.part_2)(input);
+            }
             Part::Both => {
                 self.solve(input, Part::One);
                 self.solve(input, Part::Two);
