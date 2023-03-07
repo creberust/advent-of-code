@@ -3,6 +3,7 @@ use std::{collections::HashMap, path::Path};
 use common::*;
 
 mod day_1;
+mod day_2;
 
 struct Event2022 {
     year: Year,
@@ -15,6 +16,7 @@ impl Event2022 {
         let mut puzzles = HashMap::new();
 
         puzzles.insert(Day(1), day_1::puzzle());
+        puzzles.insert(Day(2), day_2::puzzle());
 
         Self { year, puzzles }
     }
