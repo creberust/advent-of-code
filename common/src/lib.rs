@@ -4,6 +4,7 @@
 
 mod day;
 mod event;
+mod input;
 mod part;
 mod puzzle;
 mod year;
@@ -11,6 +12,7 @@ mod year;
 // Re-export every items
 pub use day::*;
 pub use event::*;
+pub use input::*;
 pub use part::*;
 pub use puzzle::*;
 pub use year::*;

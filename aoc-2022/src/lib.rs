@@ -7,7 +7,7 @@ mod day_2;
 
 struct Event2022 {
     year: Year,
-    puzzles: HashMap<Day, Puzzle<Box<dyn Fn(&Path)>>>,
+    puzzles: HashMap<Day, Puzzle<Box<dyn Fn(&Input)>>>,
 }
 
 impl Event2022 {
@@ -33,7 +33,7 @@ impl Event for Event2022 {
         match puzzle {
             Some(puzzle) => {
                 println!("|---{}", puzzle);
-                puzzle.solve(input, part);
+                puzzle.solve(&Input::from(input), part);
             }
             None => unimplemented!(),
         }

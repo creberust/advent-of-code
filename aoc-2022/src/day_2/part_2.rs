@@ -1,18 +1,12 @@
-use std::{
-    fs::File,
-    io::{BufRead, BufReader},
-    path::Path,
-};
+use std::io::BufRead;
 
 use crate::day_2::common::*;
+use common::Input;
 
-pub fn part_2(input: &Path) {
-    let file = File::open(input).unwrap();
-    let reader = BufReader::new(file);
-
+pub fn part_2(input: &Input) {
     let mut score: u32 = 0;
 
-    for line in reader.lines() {
+    for line in input.read().lines() {
         let line = line.unwrap();
 
         let mut it = line.chars();
