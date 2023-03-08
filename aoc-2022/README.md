@@ -3,5 +3,5 @@
 ## Calendar
 
 - [x] Day 1: Calorie Counting
-- [ ] Day x: TITLE
+- [x] Day 2: Rock Paper Scissors
 ...
