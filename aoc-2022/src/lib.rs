@@ -3,10 +3,11 @@ use std::{collections::HashMap, path::Path};
 use common::*;
 
 mod day_1;
+mod day_2;
 
 struct Event2022 {
     year: Year,
-    puzzles: HashMap<Day, Puzzle<Box<dyn Fn(&Path)>>>,
+    puzzles: HashMap<Day, Puzzle<Box<dyn Fn(&Input)>>>,
 }
 
 impl Event2022 {
@@ -15,6 +16,7 @@ impl Event2022 {
         let mut puzzles = HashMap::new();
 
         puzzles.insert(Day(1), day_1::puzzle());
+        puzzles.insert(Day(2), day_2::puzzle());
 
         Self { year, puzzles }
     }
@@ -31,7 +33,7 @@ impl Event for Event2022 {
         match puzzle {
             Some(puzzle) => {
                 println!("|---{}", puzzle);
-                puzzle.solve(input, part);
+                puzzle.solve(&Input::from(input), part);
             }
             None => unimplemented!(),
         }

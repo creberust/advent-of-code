@@ -1,24 +1,21 @@
-use std::{
-    fs::File,
-    io::{BufRead, BufReader, Read},
-    path::Path,
-};
+use std::io::{BufRead, Lines};
 
-pub fn part_1(input: &Path) {
-    let file = File::open(input).unwrap();
-    let reader = BufReader::new(file);
+use common::Input;
 
-    let calories = parse_max_calories(reader);
+pub fn part_1(input: &Input) {
+    let calories = parse_max_calories(input);
 
-    println!("Max calories: {}", calories);
+    println!("{}", calories);
 }
 
-fn parse_max_calories<R: Read>(mut input: BufReader<R>) -> u32 {
+fn parse_max_calories(input: &Input) -> u32 {
     let mut calories = 1;
     let mut max_calories: u32 = 0;
 
+    let mut lines = input.read().lines();
+
     while calories != 0 {
-        calories = parse_calories(&mut input);
+        calories = parse_calories(&mut lines);
 
         max_calories = max_calories.max(calories);
     }
@@ -26,10 +23,10 @@ fn parse_max_calories<R: Read>(mut input: BufReader<R>) -> u32 {
     max_calories
 }
 
-fn parse_calories<R: Read>(input: &mut BufReader<R>) -> u32 {
+fn parse_calories<B: BufRead>(lines: &mut Lines<B>) -> u32 {
     let mut calories: u32 = 0;
 
-    for line in input.lines() {
+    for line in lines {
         let line = line.unwrap();
 
         if line.is_empty() {
@@ -44,55 +41,53 @@ fn parse_calories<R: Read>(input: &mut BufReader<R>) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use std::io::Cursor;
-
     use super::*;
 
     #[test]
     fn zero_calory() {
         let zero = String::from("0");
-        let cursor = Cursor::new(zero);
 
-        assert_eq!(parse_calories(&mut BufReader::new(cursor)), 0);
+        assert_eq!(parse_calories(&mut Input::from(zero).read().lines()), 0);
     }
 
     #[test]
     fn one_thousand_calory() {
         let calory = String::from("1000");
-        let cursor = Cursor::new(calory);
 
-        assert_eq!(parse_calories(&mut BufReader::new(cursor)), 1000);
+        assert_eq!(
+            parse_calories(&mut Input::from(calory).read().lines()),
+            1000
+        );
     }
 
     #[test]
     fn one_hundred_calories() {
         let calories = String::from("20\n50\n30");
-        let cursor = Cursor::new(calories);
 
-        assert_eq!(parse_calories(&mut BufReader::new(cursor)), 100);
+        assert_eq!(
+            parse_calories(&mut Input::from(calories).read().lines()),
+            100
+        );
     }
 
     #[test]
     fn two_elves_carrying_same_calories() {
         let calories = String::from("20\n50\n30\n\n40\n60");
-        let cursor = Cursor::new(calories);
 
-        assert_eq!(parse_max_calories(BufReader::new(cursor)), 100);
+        assert_eq!(parse_max_calories(&Input::from(calories)), 100);
     }
 
     #[test]
     fn two_elves_second_carrying_more_calories() {
         let calories = String::from("20\n50\n30\n\n40\n60\n10");
-        let cursor = Cursor::new(calories);
 
-        assert_eq!(parse_max_calories(BufReader::new(cursor)), 110);
+        assert_eq!(parse_max_calories(&Input::from(calories)), 110);
     }
 
     #[test]
     fn three_elves_first_carrying_more_calories() {
         let calories = String::from("20\n50\n30\n\n40\n\n10");
-        let cursor = Cursor::new(calories);
 
-        assert_eq!(parse_max_calories(BufReader::new(cursor)), 100);
+        assert_eq!(parse_max_calories(&Input::from(calories)), 100);
     }
 }
