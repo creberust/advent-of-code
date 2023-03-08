@@ -49,5 +49,50 @@ mod tests {
     use super::*;
 
     #[test]
-    fn simple() {}
+    fn opponent_rock() {
+        // Given
+        let opponent = Opponent::Rock;
+        let rounds = vec![RoundStatus::WIN, RoundStatus::DRAW, RoundStatus::LOSE];
+        let expected = vec![PAPER + WIN, ROCK + DRAW, SCISSORS + LOSE];
+
+        for i in 0..rounds.len() {
+            // When
+            let actual = fight(opponent, rounds[i]);
+
+            // Then
+            assert_eq!(actual, expected[i]);
+        }
+    }
+
+    #[test]
+    fn opponent_paper() {
+        // Given
+        let opponent = Opponent::Paper;
+        let rounds = vec![RoundStatus::WIN, RoundStatus::DRAW, RoundStatus::LOSE];
+        let expected = vec![SCISSORS + WIN, PAPER + DRAW, ROCK + LOSE];
+
+        for i in 0..rounds.len() {
+            // When
+            let actual = fight(opponent, rounds[i]);
+
+            // Then
+            assert_eq!(actual, expected[i]);
+        }
+    }
+
+    #[test]
+    fn opponent_scissors() {
+        // Given
+        let opponent = Opponent::Scissors;
+        let rounds = vec![RoundStatus::WIN, RoundStatus::DRAW, RoundStatus::LOSE];
+        let expected = vec![ROCK + WIN, SCISSORS + DRAW, PAPER + LOSE];
+
+        for i in 0..rounds.len() {
+            // When
+            let actual = fight(opponent, rounds[i]);
+
+            // Then
+            assert_eq!(actual, expected[i]);
+        }
+    }
 }

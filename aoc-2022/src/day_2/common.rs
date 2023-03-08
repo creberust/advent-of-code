@@ -10,6 +10,7 @@ pub const SCISSORS: u32 = 3;
 /// A => Rock
 /// B => Paper
 /// C => Scissors
+#[derive(Debug, Clone, Copy)]
 pub enum Opponent {
     Rock,
     Paper,
@@ -32,6 +33,7 @@ impl From<char> for Opponent {
 /// X => Rock
 /// Z => Scissors
 
+#[derive(Debug, Clone, Copy)]
 pub enum Player {
     Rock,
     Paper,
@@ -54,6 +56,7 @@ impl From<char> for Player {
 /// X => LOSE
 /// Z => WIN
 
+#[derive(Debug, Clone, Copy)]
 pub enum RoundStatus {
     LOSE,
     DRAW,
