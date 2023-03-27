@@ -4,6 +4,7 @@ use common::*;
 
 mod day_1;
 mod day_2;
+mod day_3;
 
 struct Event2022 {
     year: Year,
@@ -17,6 +18,7 @@ impl Event2022 {
 
         puzzles.insert(Day(1), day_1::puzzle());
         puzzles.insert(Day(2), day_2::puzzle());
+        puzzles.insert(Day(3), day_3::puzzle());
 
         Self { year, puzzles }
     }
