@@ -10,11 +10,13 @@ pub struct Cli {
     pub year: u16,
 
     /// The day from the selected advent of code event
+    ///
+    /// By default, every puzzles will be solved
     #[arg(value_parser = value_parser!(u8).range(1..=25))]
-    pub day: u8,
+    pub day: Option<u8>,
 
     /// The path to the input file
-    pub input: PathBuf,
+    pub input: Option<PathBuf>,
 
     /// The part of the puzzle you want to execute
     ///

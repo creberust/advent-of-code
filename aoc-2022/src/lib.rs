@@ -1,4 +1,7 @@
-use std::{collections::HashSet, path::Path};
+use std::{
+    collections::HashSet,
+    path::{Path, PathBuf},
+};
 
 use common::*;
 
@@ -38,6 +41,20 @@ impl Event for Event2022 {
                 puzzle.solve(&Input::from(input), part);
             }
             None => unimplemented!(),
+        }
+    }
+
+    fn solve_all(&self) {
+        for day in 0..=25 {
+            let day = Day(day);
+
+            let input = PathBuf::from(format!("input/aoc-{}/day_{}/input.txt", self.year, day));
+
+            if !input.try_exists().unwrap() {
+                continue;
+            }
+
+            self.solve(day, &input, Part::Both);
         }
     }
 }
