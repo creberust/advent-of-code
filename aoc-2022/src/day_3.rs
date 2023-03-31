@@ -1,16 +1,13 @@
-use common::{Day, Input, Puzzle};
+use common::{Day, Puzzle};
 
 mod part_1;
-use part_1::*;
-
 mod part_2;
-use part_2::*;
 
-pub fn puzzle() -> Puzzle<Box<dyn Fn(&Input)>> {
+pub fn puzzle() -> Puzzle {
     Puzzle::new(
         Day(3),
         String::from("Rucksack Reorganization"),
-        Box::new(part_1),
-        Box::new(part_2),
+        Box::new(part_1::Solver),
+        Box::new(part_2::Solver),
     )
 }

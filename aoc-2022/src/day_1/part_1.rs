@@ -1,11 +1,15 @@
 use std::io::{BufRead, Lines};
 
-use common::Input;
+use common::{Input, Solution};
 
-pub fn part_1(input: &Input) {
-    let calories = parse_max_calories(input);
+pub struct Solver;
 
-    println!("{}", calories);
+impl Solution for Solver {
+    fn solve(&self, input: &Input) {
+        let calories = parse_max_calories(input);
+
+        println!("{}", calories);
+    }
 }
 
 fn parse_max_calories(input: &Input) -> u32 {

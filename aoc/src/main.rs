@@ -7,7 +7,7 @@ fn main() {
     let args = get_cli_arg();
 
     let year = Year(args.year);
-    let day = Day(args.day);
+    let day = args.day;
     let part = match args.part {
         Some(part) => match part {
             PartValue::One => Part::One,
@@ -15,7 +15,7 @@ fn main() {
         },
         None => Part::Both,
     };
-    let input = args.input.as_path();
+    let input = args.input;
 
     let event = match year {
         Year(2022) => aoc_2022::event(),
@@ -23,5 +23,11 @@ fn main() {
     };
 
     println!("{}", event);
-    event.solve(day, input, part);
+    match day {
+        Some(day) => {
+            let input = input.unwrap();
+            event.solve(Day(day), &input, part)
+        }
+        None => event.solve_all(),
+    }
 }

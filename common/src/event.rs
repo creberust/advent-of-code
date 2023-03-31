@@ -13,6 +13,9 @@ pub trait Event {
     /// * `day` - The day of the event to solve
     /// * `part` - The part(s) of the puzzle to solve
     fn solve(&self, day: Day, input: &Path, part: Part);
+
+    /// Solve all the implemented puzzles
+    fn solve_all(&self);
 }
 
 impl Display for dyn Event {
