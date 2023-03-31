@@ -1,26 +1,30 @@
 use std::{collections::HashSet, io::BufRead};
 
-use common::Input;
+use common::{Input, Solution};
 
-pub fn part_2(input: &Input) {
-    let mut lines = input.read().lines();
-    let mut priority: u32 = 0;
+pub struct Solver;
 
-    loop {
-        // Break condition
-        let first = lines.next();
-        if first.is_none() {
-            break;
+impl Solution for Solver {
+    fn solve(&self, input: &Input) {
+        let mut lines = input.read().lines();
+        let mut priority: u32 = 0;
+
+        loop {
+            // Break condition
+            let first = lines.next();
+            if first.is_none() {
+                break;
+            }
+
+            let first = first.unwrap().unwrap();
+            let second = lines.next().unwrap().unwrap();
+            let third = lines.next().unwrap().unwrap();
+
+            priority += compute(first, second, third);
         }
 
-        let first = first.unwrap().unwrap();
-        let second = lines.next().unwrap().unwrap();
-        let third = lines.next().unwrap().unwrap();
-
-        priority += compute(first, second, third);
+        println!("{}", priority);
     }
-
-    println!("{}", priority);
 }
 
 fn compute(first: String, second: String, third: String) -> u32 {

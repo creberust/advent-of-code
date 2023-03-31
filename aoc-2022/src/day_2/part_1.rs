@@ -1,26 +1,30 @@
 use std::io::BufRead;
 
 use crate::day_2::common::*;
-use common::Input;
+use common::{Input, Solution};
 
-pub fn part_1(input: &Input) {
-    let mut score: u32 = 0;
+pub struct Solver;
 
-    for line in input.read().lines() {
-        let line = line.unwrap();
+impl Solution for Solver {
+    fn solve(&self, input: &Input) {
+        let mut score: u32 = 0;
 
-        let mut it = line.chars();
+        for line in input.read().lines() {
+            let line = line.unwrap();
 
-        let opponent: Opponent = Opponent::from(it.next().expect("Invalid Opponent input"));
-        let _ = it.next();
-        let player: Player = Player::from(it.next().expect("Invalid Player input."));
+            let mut it = line.chars();
 
-        let round = fight(opponent, player);
+            let opponent: Opponent = Opponent::from(it.next().expect("Invalid Opponent input"));
+            let _ = it.next();
+            let player: Player = Player::from(it.next().expect("Invalid Player input."));
 
-        score += round;
+            let round = fight(opponent, player);
+
+            score += round;
+        }
+
+        println!("{}", score);
     }
-
-    println!("{}", score);
 }
 
 fn fight(opponent: Opponent, player: Player) -> u32 {

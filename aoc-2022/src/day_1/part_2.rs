@@ -1,13 +1,17 @@
 use std::collections::BinaryHeap;
 use std::io::{BufRead, Lines};
 
-use common::Input;
+use common::{Input, Solution};
 
-pub fn part_2(input: &Input) {
-    let calories = parse_max_calories(input);
+pub struct Solver;
 
-    assert_eq!(calories.len(), 3);
-    println!("{}", calories.iter().sum::<u32>());
+impl Solution for Solver {
+    fn solve(&self, input: &Input) {
+        let calories = parse_max_calories(input);
+
+        assert_eq!(calories.len(), 3);
+        println!("{}", calories.iter().sum::<u32>());
+    }
 }
 
 fn parse_max_calories(input: &Input) -> Vec<u32> {

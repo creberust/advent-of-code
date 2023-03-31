@@ -3,17 +3,21 @@ use std::{fmt::Display, hash::Hash};
 use crate::*;
 
 /// The puzzle of the given day for a given event.
-#[derive(Debug, Eq)]
-pub struct Puzzle<S: Fn(&Input)> {
+pub struct Puzzle {
     day: Day,
     name: String,
-    part_1: S,
-    part_2: S,
+    part_1: Box<dyn Solution>,
+    part_2: Box<dyn Solution>,
 }
 
-impl<S: Fn(&Input)> Puzzle<S> {
+impl Puzzle {
     /// Create a new puzzle
-    pub fn new(day: Day, name: String, part_1: S, part_2: S) -> Self {
+    pub fn new(
+        day: Day,
+        name: String,
+        part_1: Box<dyn Solution>,
+        part_2: Box<dyn Solution>,
+    ) -> Self {
         Self {
             day,
             name,
@@ -41,11 +45,11 @@ impl<S: Fn(&Input)> Puzzle<S> {
         match part {
             Part::One => {
                 println!("    |---Part One");
-                (self.part_1)(input);
+                self.part_1.solve(input);
             }
             Part::Two => {
                 println!("    \\---Part Two");
-                (self.part_2)(input);
+                self.part_2.solve(input);
             }
             Part::Both => {
                 self.solve(input, Part::One);
@@ -55,19 +59,20 @@ impl<S: Fn(&Input)> Puzzle<S> {
     }
 }
 
-impl<S: Fn(&Input)> Display for Puzzle<S> {
+impl Display for Puzzle {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "Day {}: {}", self.day(), self.name())
     }
 }
 
-impl<S: Fn(&Input)> PartialEq for Puzzle<S> {
+impl PartialEq for Puzzle {
     fn eq(&self, other: &Self) -> bool {
         self.day == other.day
     }
 }
+impl Eq for Puzzle {}
 
-impl<S: Fn(&Input)> Hash for Puzzle<S> {
+impl Hash for Puzzle {
     fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
         self.day.hash(state)
     }
