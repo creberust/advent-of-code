@@ -16,3 +16,11 @@ impl Sections {
         self.end
     }
 }
+
+pub fn full_overlaping(a: &Sections, b: &Sections) -> bool {
+    (a.start() <= b.start() && a.end() >= b.end()) || (b.start() <= a.start() && b.end() >= a.end())
+}
+
+pub fn not_fully_overlaping(a: &Sections, b: &Sections) -> bool {
+    a.end() < b.start() || b.end() < a.start()
+}

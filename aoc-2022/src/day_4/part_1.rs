@@ -23,13 +23,11 @@ impl Solution for Solver {
                 elements[3].to_string().parse().unwrap(),
             );
 
-            overlap += if first.start() <= second.start() && first.end() >= second.end() {
-                1
-            } else if second.start() <= first.start() && second.end() >= first.end() {
+            overlap += if full_overlaping(&first, &second) {
                 1
             } else {
                 0
-            }
+            };
         }
 
         println!("{}", overlap);

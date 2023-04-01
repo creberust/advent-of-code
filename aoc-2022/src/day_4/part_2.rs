@@ -23,7 +23,7 @@ impl Solution for Solver {
                 elements[3].to_string().parse().unwrap(),
             );
 
-            overlap += if first.end() < second.start() || second.end() < first.start() {
+            overlap += if not_fully_overlaping(&first, &second) {
                 0
             } else {
                 1
