@@ -48,7 +48,7 @@ impl Event for Event2022 {
 
     fn solve_all(&self) {
         for day in 0..=25 {
-            let day = Day(day);
+            let day = Day::from(day);
 
             let input = PathBuf::from(format!("input/aoc-{}/day_{}/input.txt", self.year, day));
 

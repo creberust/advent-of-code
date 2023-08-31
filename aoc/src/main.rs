@@ -26,7 +26,7 @@ fn main() {
     match day {
         Some(day) => {
             let input = input.unwrap();
-            event.solve(Day(day), &input, part)
+            event.solve(Day::from(day), &input, part)
         }
         None => event.solve_all(),
     }
