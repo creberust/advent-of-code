@@ -1,6 +1,6 @@
-use crate::{Day, Puzzle};
+use common::{Day, Puzzle};
 
-mod common;
+mod both;
 
 mod part_1;
 mod part_2;

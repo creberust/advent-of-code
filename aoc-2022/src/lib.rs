@@ -1,66 +1,21 @@
-use std::{
-    collections::HashSet,
-    path::{Path, PathBuf},
-};
+//! Event for the Advent of Code 2022.
 
-use common::*;
+use common::{Event, Year};
 
 mod day_1;
 mod day_2;
 mod day_3;
 mod day_4;
 
-struct Event2022 {
-    year: Year,
-    puzzles: HashSet<Puzzle>,
-}
-
-impl Event2022 {
-    fn new() -> Self {
-        let year = Year::from(2022);
-        let mut puzzles = HashSet::new();
-
-        puzzles.insert(day_1::puzzle());
-        puzzles.insert(day_2::puzzle());
-        puzzles.insert(day_3::puzzle());
-        puzzles.insert(day_4::puzzle());
-
-        Self { year, puzzles }
-    }
-}
-
-impl Event for Event2022 {
-    fn year(&self) -> Year {
-        self.year
-    }
-
-    fn solve(&self, day: Day, input: &Path, part: Part) {
-        let puzzle = self.puzzles.iter().find(|&p| p.day() == day);
-
-        match puzzle {
-            Some(puzzle) => {
-                println!("|---{}", puzzle);
-                puzzle.solve(&Input::from(input), part);
-            }
-            None => unimplemented!(),
-        }
-    }
-
-    fn solve_all(&self) {
-        for day in 0..=25 {
-            let day = Day::from(day);
-
-            let input = PathBuf::from(format!("input/aoc-{}/day_{}/input.txt", self.year, day));
-
-            if !input.try_exists().unwrap() {
-                continue;
-            }
-
-            self.solve(day, &input, Part::Both);
-        }
-    }
-}
-
-pub fn event() -> Box<dyn Event> {
-    Box::new(Event2022::new())
+pub fn event() -> Event {
+    Event::new(
+        Year::from(2022),
+        [
+            day_1::puzzle(),
+            day_2::puzzle(),
+            day_3::puzzle(),
+            day_4::puzzle(),
+        ]
+        .into_iter(),
+    )
 }

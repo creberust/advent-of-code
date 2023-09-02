@@ -1,12 +1,19 @@
+//! Implementation for a Puzzle in Advent of Code.
+
 use std::{fmt::Display, hash::Hash};
 
 use crate::*;
 
 /// The puzzle of the given day for a given event.
 pub struct Puzzle {
+    /// The [Day] of the Puzzle.
     day: Day,
+    /// The name of the Puzzle.
     name: String,
+
+    /// Solution for the first part.
     part_1: Box<dyn Solution>,
+    /// Solution for the second part.
     part_2: Box<dyn Solution>,
 }
 
@@ -36,26 +43,14 @@ impl Puzzle {
         self.day
     }
 
-    /// Solve the `part` of the puzzle
-    ///
-    /// # Parameters
-    /// * `input` - The input given to the puzzle
-    /// * `part` - The part(s) of the puzzle to solve
-    pub fn solve(&self, input: &Input, part: Part) {
-        match part {
-            Part::One => {
-                println!("    |---Part One");
-                self.part_1.solve(input);
-            }
-            Part::Two => {
-                println!("    \\---Part Two");
-                self.part_2.solve(input);
-            }
-            Part::Both => {
-                self.solve(input, Part::One);
-                self.solve(input, Part::Two);
-            }
-        }
+    /// Solve the first part of the puzzle with the given `input` and return the result.
+    pub fn solve_one(&self, input: &Input) -> u32 {
+        self.part_1.solve(input)
+    }
+
+    /// Solve the second part of the puzzle with the given `input` and return the result.
+    pub fn solve_two(&self, input: &Input) -> u32 {
+        self.part_2.solve(input)
     }
 }
 
