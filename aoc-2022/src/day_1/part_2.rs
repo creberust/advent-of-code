@@ -6,11 +6,11 @@ use common::{Input, Solution};
 pub struct Solver;
 
 impl Solution for Solver {
-    fn solve(&self, input: &Input) -> u32 {
+    fn solve(&self, input: &Input) -> i64 {
         let calories = parse_max_calories(input);
 
         assert_eq!(calories.len(), 3);
-        calories.iter().sum::<u32>()
+        calories.iter().sum::<u32>() as i64
     }
 }
 

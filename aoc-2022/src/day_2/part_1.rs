@@ -6,7 +6,7 @@ use common::{Input, Solution};
 pub struct Solver;
 
 impl Solution for Solver {
-    fn solve(&self, input: &Input) -> u32 {
+    fn solve(&self, input: &Input) -> i64 {
         let mut score: u32 = 0;
 
         for line in input.read().lines() {
@@ -23,7 +23,7 @@ impl Solution for Solver {
             score += round;
         }
 
-        score
+        score as i64
     }
 }
 

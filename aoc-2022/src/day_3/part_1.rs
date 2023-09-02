@@ -5,7 +5,7 @@ use common::{Input, Solution};
 pub struct Solver;
 
 impl Solution for Solver {
-    fn solve(&self, input: &Input) -> u32 {
+    fn solve(&self, input: &Input) -> i64 {
         let mut priority: u32 = 0;
 
         for line in input.read().lines() {
@@ -14,7 +14,7 @@ impl Solution for Solver {
             priority += rucksacks_priority(line);
         }
 
-        priority
+        priority as i64
     }
 }
 

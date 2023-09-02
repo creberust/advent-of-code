@@ -7,7 +7,7 @@ use crate::day_4::both::*;
 pub struct Solver;
 
 impl Solution for Solver {
-    fn solve(&self, input: &common::Input) -> u32 {
+    fn solve(&self, input: &common::Input) -> i64 {
         let mut overlap: u32 = 0;
 
         for line in input.read().lines() {
@@ -30,6 +30,6 @@ impl Solution for Solver {
             }
         }
 
-        overlap
+        overlap as i64
     }
 }

@@ -5,8 +5,8 @@ use common::{Input, Solution};
 pub struct Solver;
 
 impl Solution for Solver {
-    fn solve(&self, input: &Input) -> u32 {
-        parse_max_calories(input)
+    fn solve(&self, input: &Input) -> i64 {
+        parse_max_calories(input) as i64
     }
 }
 
