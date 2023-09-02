@@ -44,12 +44,12 @@ impl Puzzle {
     }
 
     /// Solve the first part of the puzzle with the given `input` and return the result.
-    pub fn solve_one(&self, input: &Input) -> u32 {
+    pub fn solve_one(&self, input: &Input) -> i64 {
         self.part_1.solve(input)
     }
 
     /// Solve the second part of the puzzle with the given `input` and return the result.
-    pub fn solve_two(&self, input: &Input) -> u32 {
+    pub fn solve_two(&self, input: &Input) -> i64 {
         self.part_2.solve(input)
     }
 }

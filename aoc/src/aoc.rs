@@ -78,7 +78,7 @@ impl AdventOfCode {
         }
     }
 
-    fn solve(&self, puzzle: &Puzzle, input: impl AsRef<Path>, part: Part) -> u32 {
+    fn solve(&self, puzzle: &Puzzle, input: impl AsRef<Path>, part: Part) -> i64 {
         match part {
             Part::One => puzzle.solve_one(&Input::File(input.as_ref().to_path_buf())),
             Part::Two => puzzle.solve_two(&Input::File(input.as_ref().to_path_buf())),
