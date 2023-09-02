@@ -1,40 +1,37 @@
-mod cli;
-use std::{
-    collections::HashMap,
-    path::{Path, PathBuf},
-};
+use std::path::PathBuf;
 
 use cli::*;
+mod cli;
 
 use common::*;
+
+use crate::aoc::AdventOfCode;
+
+mod aoc;
 
 fn main() {
     pretty_env_logger::init();
 
-    let event_per_year: HashMap<Year, Event> = [
-        (Year::from(2015), aoc_2015::event()),
-        (Year::from(2022), aoc_2022::event()),
-    ]
-    .into();
+    let aoc = AdventOfCode::new();
 
     let args = get_cli_arg();
 
     // 1. Retrieve the year, or solve all years
     let year = match args.year {
         Some(year) => Year::from(year),
-        None => return solve_all_years(),
+        None => return aoc.solve_all_years(),
     };
     log::debug!("Year: {}", year);
 
     // 1.a. Retrieve the event associated with the year.
-    let event = event_per_year
-        .get(&year)
+    let event = aoc
+        .get_event(year)
         .expect(&format!("Unimplemented Event for year: {}", year));
 
     // 2. Retrieve the day, or solve all day of the year.
     let day = match args.day {
         Some(day) => Day::from(day),
-        None => return solve_all_days(event),
+        None => return aoc.solve_all_days(event),
     };
     log::debug!("Day: {}", day);
 
@@ -61,59 +58,5 @@ fn main() {
     log::debug!("Input: {:?}", input);
 
     println!("|--- {}", puzzle);
-    solve_puzzle(&puzzle, input, part);
-}
-
-fn solve_all_years() {
-    for event in [aoc_2015::event(), aoc_2022::event()] {
-        println!("{}", event);
-
-        solve_all_days(&event)
-    }
-}
-
-fn solve_all_days(event: &Event) {
-    for day in 1..=25 {
-        let day = Day::from(day);
-
-        let input = PathBuf::from(format!("input/{}/{}/input.txt", event.year(), day));
-
-        if !input.try_exists().unwrap() {
-            continue;
-        }
-
-        let puzzle = event
-            .puzzle(day)
-            .expect(&format!("Unimplemented Puzzle for day: {}", day));
-
-        println!("|--- {}", puzzle);
-        solve_puzzle(event.puzzle(day).unwrap(), &input, Part::Both);
-    }
-}
-
-fn solve_puzzle(puzzle: &Puzzle, input: impl AsRef<Path>, part: Part) {
-    match part {
-        Part::One => {
-            println!("   \\--- Part One");
-            let result = solve(puzzle, input, Part::One);
-            println!("      \\--- Result: {}", result);
-        }
-        Part::Two => {
-            println!("   \\--- Part One");
-            let result = solve(puzzle, input, Part::Two);
-            println!("      \\--- Result: {}", result);
-        }
-        Part::Both => {
-            solve_puzzle(puzzle, input.as_ref(), Part::One);
-            solve_puzzle(puzzle, input.as_ref(), Part::Two)
-        }
-    }
-}
-
-fn solve(puzzle: &Puzzle, input: impl AsRef<Path>, part: Part) -> u32 {
-    match part {
-        Part::One => puzzle.solve_one(&Input::File(input.as_ref().to_path_buf())),
-        Part::Two => puzzle.solve_two(&Input::File(input.as_ref().to_path_buf())),
-        _ => unreachable!(),
-    }
+    aoc.solve_puzzle(&puzzle, input, part);
 }
