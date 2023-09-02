@@ -1,24 +1,38 @@
+//! Implementation of Year for Advent of Code.
+
 use std::fmt::Display;
 
-/// The Advent of Code year
+/// The year for the Advent of Code.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct Year(pub u16);
+pub struct Year(u16);
 
 impl Year {
-    /// The first year of the Advent of Code event
-    pub const MIN: u16 = 2015;
-    /// The most recent year of the Advent of Code event
-    pub const MAX: u16 = 2022;
+    /// The minimum year of the Advent of Code event.
+    const MIN: u16 = 2015;
+    /// The maximum recent year of the Advent of Code event.
+    const MAX: u16 = 2022;
+
+    /// The first year of the Advent of Code event.
+    pub const FIRST: Year = Year(Self::MIN);
+    /// The last year of the Advent of Code event.
+    pub const LAST: Year = Year(Self::MAX);
+}
+
+impl Year {
+    /// Get the year number.
+    pub fn get(&self) -> u16 {
+        self.0
+    }
 }
 
 impl From<u16> for Year {
     fn from(value: u16) -> Self {
         if value < Self::MIN || value > Self::MAX {
             panic!(
-                "The year isn't within the range [{}, {}]: {}",
+                "Invalid value for Year: {} ∉ [{}, {}]",
+                value,
                 Self::MIN,
                 Self::MAX,
-                value
             );
         }
 

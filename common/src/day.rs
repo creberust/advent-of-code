@@ -20,6 +20,13 @@ impl Day {
     pub const LAST: Day = Day(Self::MAX);
 }
 
+impl Day {
+    /// Get the day number.
+    pub fn get(&self) -> u8 {
+        self.0
+    }
+}
+
 impl From<u8> for Day {
     fn from(value: u8) -> Self {
         if value < Self::MIN || value > Self::MAX {

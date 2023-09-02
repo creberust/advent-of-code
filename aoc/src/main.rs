@@ -6,7 +6,7 @@ use common::*;
 fn main() {
     let args = get_cli_arg();
 
-    let year = Year(args.year);
+    let year = Year::from(args.year);
     let day = args.day;
     let part = match args.part {
         Some(part) => match part {
@@ -18,7 +18,7 @@ fn main() {
     let input = args.input;
 
     let event = match year {
-        Year(2022) => aoc_2022::event(),
+        year if year.get() == 2022 => aoc_2022::event(),
         _ => unimplemented!(),
     };
 

@@ -17,7 +17,7 @@ struct Event2022 {
 
 impl Event2022 {
     fn new() -> Self {
-        let year = Year(2022);
+        let year = Year::from(2022);
         let mut puzzles = HashSet::new();
 
         puzzles.insert(day_1::puzzle());
