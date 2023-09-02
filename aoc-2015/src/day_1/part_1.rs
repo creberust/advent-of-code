@@ -1,95 +1,67 @@
-use std::io::{BufRead, Lines};
+use std::io::BufRead;
 
 use common::{Input, Solution};
 
 pub struct Solver;
 
 impl Solution for Solver {
-    fn solve(&self, input: &Input) -> u32 {
-        parse_max_calories(input)
-    }
-}
+    fn solve(&self, input: &Input) -> i64 {
+        let mut result = 0;
 
-fn parse_max_calories(input: &Input) -> u32 {
-    let mut calories = 1;
-    let mut max_calories: u32 = 0;
+        for line in input.read().lines() {
+            let line = line.unwrap();
 
-    let mut lines = input.read().lines();
-
-    while calories != 0 {
-        calories = parse_calories(&mut lines);
-
-        max_calories = max_calories.max(calories);
-    }
-
-    max_calories
-}
-
-fn parse_calories<B: BufRead>(lines: &mut Lines<B>) -> u32 {
-    let mut calories: u32 = 0;
-
-    for line in lines {
-        let line = line.unwrap();
-
-        if line.is_empty() {
-            break; // Empty line between two elves
+            for c in line.chars() {
+                match c {
+                    '(' => result += 1,
+                    ')' => result -= 1,
+                    _ => continue,
+                }
+            }
         }
 
-        calories += line.parse::<u32>().unwrap();
+        result
     }
-
-    calories
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn zero_calory() {
-        let zero = String::from("0");
+    fn solve(input: impl AsRef<str>, expected: i64) {
+        // Given
+        let input = Input::Text(String::from(input.as_ref()));
 
-        assert_eq!(parse_calories(&mut Input::from(zero).read().lines()), 0);
+        // When
+        let result = Solver.solve(&input);
+
+        // Then
+        assert_eq!(result, expected);
     }
 
     #[test]
-    fn one_thousand_calory() {
-        let calory = String::from("1000");
-
-        assert_eq!(
-            parse_calories(&mut Input::from(calory).read().lines()),
-            1000
-        );
+    fn zero() {
+        solve("", 0);
+        solve("(())", 0);
+        solve("()()", 0);
     }
 
     #[test]
-    fn one_hundred_calories() {
-        let calories = String::from("20\n50\n30");
-
-        assert_eq!(
-            parse_calories(&mut Input::from(calories).read().lines()),
-            100
-        );
+    fn three() {
+        solve("(((", 3);
+        solve("(()(()(", 3);
+        solve("))(((((", 3);
     }
 
     #[test]
-    fn two_elves_carrying_same_calories() {
-        let calories = String::from("20\n50\n30\n\n40\n60");
-
-        assert_eq!(parse_max_calories(&Input::from(calories)), 100);
+    fn minus_one() {
+        solve("())", -1);
+        solve("))(", -1);
     }
 
     #[test]
-    fn two_elves_second_carrying_more_calories() {
-        let calories = String::from("20\n50\n30\n\n40\n60\n10");
-
-        assert_eq!(parse_max_calories(&Input::from(calories)), 110);
-    }
-
-    #[test]
-    fn three_elves_first_carrying_more_calories() {
-        let calories = String::from("20\n50\n30\n\n40\n\n10");
-
-        assert_eq!(parse_max_calories(&Input::from(calories)), 100);
+    fn minus_three() {
+        solve(")))", -3);
+        solve(")())())", -3);
     }
 }
