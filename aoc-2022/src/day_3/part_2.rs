@@ -5,7 +5,7 @@ use common::{Input, Solution};
 pub struct Solver;
 
 impl Solution for Solver {
-    fn solve(&self, input: &Input) {
+    fn solve(&self, input: &Input) -> u32 {
         let mut lines = input.read().lines();
         let mut priority: u32 = 0;
 
@@ -23,7 +23,7 @@ impl Solution for Solver {
             priority += compute(first, second, third);
         }
 
-        println!("{}", priority);
+        priority
     }
 }
 

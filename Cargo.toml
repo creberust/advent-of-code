@@ -9,3 +9,5 @@ license-file = "LICENSE"
 keywords = ["adventofcode"]
 publish = false
 
+[workspace.dependencies]
+log = "0.4.20"

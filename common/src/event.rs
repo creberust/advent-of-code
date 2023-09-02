@@ -1,24 +1,40 @@
-use std::{fmt::Display, path::Path};
+//! Implementation for an Event in Advent of Code.
 
-use crate::*;
+use std::{collections::HashSet, fmt::Display};
 
-/// Abstraction for an AoC event (year)
-pub trait Event {
-    /// The year of the event
-    fn year(&self) -> Year;
+use crate::{Day, Puzzle, Year};
 
-    /// Solve the given day for an AoC event
-    ///
-    /// # Parameters
-    /// * `day` - The day of the event to solve
-    /// * `part` - The part(s) of the puzzle to solve
-    fn solve(&self, day: Day, input: &Path, part: Part);
+/// An Event containing all the [Puzzle]s for a [Year].
+pub struct Event {
+    /// The [Year] of the Event.
+    year: Year,
 
-    /// Solve all the implemented puzzles
-    fn solve_all(&self);
+    /// The puzzles for this event.
+    puzzles: HashSet<Puzzle>,
 }
 
-impl Display for dyn Event {
+/// Abstraction for an AoC event (year)
+impl Event {
+    /// Create a new Event for the `year` with its set of `puzzles`.
+    pub fn new(year: Year, puzzles: impl Iterator<Item = Puzzle>) -> Self {
+        Self {
+            year,
+            puzzles: puzzles.collect(),
+        }
+    }
+
+    /// The [Year] of the event.
+    pub fn year(&self) -> Year {
+        self.year
+    }
+
+    /// Get the puzzle for the specified `day`.
+    pub fn puzzle(&self, day: Day) -> Option<&Puzzle> {
+        self.puzzles.iter().find(|&puzzle| puzzle.day() == day)
+    }
+}
+
+impl Display for Event {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "Advent of Code {}", self.year())
     }

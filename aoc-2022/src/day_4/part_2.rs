@@ -2,12 +2,12 @@ use common::Solution;
 
 use std::io::BufRead;
 
-use crate::day_4::common::*;
+use crate::day_4::both::*;
 
 pub struct Solver;
 
 impl Solution for Solver {
-    fn solve(&self, input: &common::Input) {
+    fn solve(&self, input: &common::Input) -> u32 {
         let mut overlap: u32 = 0;
 
         for line in input.read().lines() {
@@ -30,6 +30,6 @@ impl Solution for Solver {
             }
         }
 
-        println!("{}", overlap);
+        overlap
     }
 }

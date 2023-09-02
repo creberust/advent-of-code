@@ -1,14 +1,12 @@
 use common::{Day, Puzzle};
 
-mod both;
-
 mod part_1;
 mod part_2;
 
 pub fn puzzle() -> Puzzle {
     Puzzle::new(
-        Day::from(4),
-        String::from("Camp Cleanup"),
+        Day::from(1),
+        String::from("Not Quite Lisp"),
         Box::new(part_1::Solver),
         Box::new(part_2::Solver),
     )

@@ -5,30 +5,32 @@ use clap::{value_parser, Parser, ValueEnum};
 #[derive(Parser)]
 #[command(author, version, about)]
 pub struct Cli {
-    /// The advent of code event for the given year
-    #[arg(value_parser = value_parser!(u16).range(2015..=2022))]
-    pub year: u16,
-
-    /// The day from the selected advent of code event
+    /// The advent of code event for the given year.
     ///
-    /// By default, every puzzles will be solved
+    /// By default, every year will be solved.
+    #[arg(value_parser = value_parser!(u16).range(2015..=2022))]
+    pub year: Option<u16>,
+
+    /// The day from the selected advent of code event.
+    ///
+    /// By default, every puzzles will be solved.
     #[arg(value_parser = value_parser!(u8).range(1..=25))]
     pub day: Option<u8>,
 
-    /// The path to the input file
+    /// The path to the input file.
     pub input: Option<PathBuf>,
 
-    /// The part of the puzzle you want to execute
+    /// The part of the puzzle you want to execute.
     ///
-    /// By default, both parts are solved one after the other
+    /// By default, both parts are solved one after the other.
     pub part: Option<PartValue>,
 }
 
 #[derive(Copy, Clone, PartialEq, Eq, ValueEnum)]
 pub enum PartValue {
-    /// Only solve puzzle part one
+    /// Only solve puzzle part one.
     One,
-    /// Only solve puzzle part two
+    /// Only solve puzzle part two.
     Two,
 }
 
