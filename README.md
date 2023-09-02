@@ -10,6 +10,7 @@ The choice of Rust is purely to improve my skills and to learn new things, as we
 
 ## Years
 
+- [2015](aoc-2015/)
 - [2022](aoc-2022/)
 
 ## Link
