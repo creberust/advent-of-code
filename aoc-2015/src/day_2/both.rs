@@ -64,3 +64,56 @@ impl From<&str> for Present {
         )
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn surface_area() {
+        // Given
+        let present = Present::new(2, 3, 4);
+
+        // When
+        let area = present.surface_area();
+
+        // Then
+        assert_eq!(area, 52);
+    }
+
+    #[test]
+    fn smallest_area() {
+        // Given
+        let present = Present::new(2, 3, 4);
+
+        // When
+        let area = present.smallest_area();
+
+        // Then
+        assert_eq!(area, 6);
+    }
+
+    #[test]
+    fn smallest_perimeter() {
+        // Given
+        let present = Present::new(2, 3, 4);
+
+        // When
+        let area = present.smallest_perimeter();
+
+        // Then
+        assert_eq!(area, 10);
+    }
+
+    #[test]
+    fn volume() {
+        // Given
+        let present = Present::new(2, 3, 4);
+
+        // When
+        let area = present.volume();
+
+        // Then
+        assert_eq!(area, 2 * 3 * 4);
+    }
+}

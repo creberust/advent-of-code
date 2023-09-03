@@ -38,5 +38,8 @@ mod tests {
     }
 
     #[test]
-    fn simple() {}
+    fn simple() {
+        solve("2x3x4", 34);
+        solve("1x1x10", 14);
+    }
 }
