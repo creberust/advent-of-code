@@ -23,14 +23,31 @@ impl Present {
 
     /// Return the area of the smallest side.
     pub fn smallest_area(&self) -> u32 {
-        *[
+        [
             self.length * self.width,
             self.length * self.height,
             self.width * self.height,
         ]
-        .iter()
+        .into_iter()
         .min()
         .unwrap()
+    }
+
+    /// Return the smallest perimeter of any one face.
+    pub fn smallest_perimeter(&self) -> u32 {
+        [
+            2 * (self.length + self.width),
+            2 * (self.length + self.height),
+            2 * (self.width + self.height),
+        ]
+        .into_iter()
+        .min()
+        .unwrap()
+    }
+
+    /// Return the cubic feet of volume.
+    pub fn volume(&self) -> u32 {
+        self.length * self.width * self.height
     }
 }
 

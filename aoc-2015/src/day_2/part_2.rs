@@ -2,32 +2,23 @@ use std::io::BufRead;
 
 use common::{Input, Solution};
 
+use super::both::Present;
+
 pub struct Solver;
 
 impl Solution for Solver {
     fn solve(&self, input: &Input) -> i64 {
-        let mut result = 0;
-        let mut position = 1;
+        let mut feet_of_ribon = 0;
 
         for line in input.read().lines() {
             let line = line.unwrap();
 
-            for c in line.chars() {
-                match c {
-                    '(' => result += 1,
-                    ')' => result -= 1,
-                    _ => continue,
-                }
+            let present = Present::from(line.as_str());
 
-                if result < 0 {
-                    break;
-                }
-
-                position += 1;
-            }
+            feet_of_ribon += present.volume() + present.smallest_perimeter();
         }
 
-        position
+        feet_of_ribon as i64
     }
 }
 
@@ -47,12 +38,5 @@ mod tests {
     }
 
     #[test]
-    fn one() {
-        solve(")", 1);
-    }
-
-    #[test]
-    fn five() {
-        solve("()())", 5);
-    }
+    fn simple() {}
 }
