@@ -1,13 +1,9 @@
 use std::io::{BufRead, Lines};
 
-use common::{Input, Solution};
+use common::Input;
 
-pub struct Solver;
-
-impl Solution for Solver {
-    fn solve(&self, input: &Input) -> i64 {
-        parse_max_calories(input) as i64
-    }
+pub fn solve(input: &Input) -> i64 {
+    parse_max_calories(input) as i64
 }
 
 fn parse_max_calories(input: &Input) -> u32 {

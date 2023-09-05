@@ -12,19 +12,14 @@ pub struct Puzzle {
     name: String,
 
     /// Solution for the first part.
-    part_1: Box<dyn Solution>,
+    part_1: Solver,
     /// Solution for the second part.
-    part_2: Box<dyn Solution>,
+    part_2: Solver,
 }
 
 impl Puzzle {
     /// Create a new puzzle
-    pub fn new(
-        day: Day,
-        name: String,
-        part_1: Box<dyn Solution>,
-        part_2: Box<dyn Solution>,
-    ) -> Self {
+    pub fn new(day: Day, name: String, part_1: Solver, part_2: Solver) -> Self {
         Self {
             day,
             name,

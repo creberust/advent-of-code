@@ -2,8 +2,5 @@
 
 use crate::*;
 
-/// Functions that a solution needs to implement.
-pub trait Solution {
-    /// Solve the solution with the given `input` and return the result.
-    fn solve(&self, input: &Input) -> i64;
-}
+/// The function to implement for a Solution.
+pub type Solution = fn(&Input) -> i64;
