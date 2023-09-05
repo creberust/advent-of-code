@@ -12,3 +12,4 @@ publish.workspace = true
 
 [dependencies]
 common = { version = "0.1.0", path = "../common" }
+md-5 = "0.10.5"
