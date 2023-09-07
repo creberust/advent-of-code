@@ -1,21 +1,17 @@
 use std::{collections::HashSet, io::BufRead};
 
-use common::{Input, Solution};
+use common::Input;
 
-pub struct Solver;
+pub fn solve(input: &Input) -> i64 {
+    let mut priority: u32 = 0;
 
-impl Solution for Solver {
-    fn solve(&self, input: &Input) -> i64 {
-        let mut priority: u32 = 0;
+    for line in input.read().lines() {
+        let line = line.unwrap();
 
-        for line in input.read().lines() {
-            let line = line.unwrap();
-
-            priority += rucksacks_priority(line);
-        }
-
-        priority as i64
+        priority += rucksacks_priority(line);
     }
+
+    priority as i64
 }
 
 pub struct Rucksack {

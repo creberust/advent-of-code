@@ -1,4 +1,4 @@
-use common::{Day, Puzzle};
+use common::{Day, Puzzle, Solver};
 
 mod both;
 
@@ -9,7 +9,7 @@ pub fn puzzle() -> Puzzle {
     Puzzle::new(
         Day::from(3),
         String::from("Perfectly Spherical Houses in a Vacuum"),
-        Box::new(part_1::Solver),
-        Box::new(part_2::Solver),
+        Solver::new(part_1::solve),
+        Solver::new(part_2::solve),
     )
 }
