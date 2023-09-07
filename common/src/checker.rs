@@ -14,8 +14,8 @@ macro_rules! check {
 /// # Example
 ///
 /// ```
-/// use crate::{Checker, check};
-/// # use crate::Input;
+/// use common::{Checker, check};
+/// # use common::Input;
 ///
 /// fn solve(input: &Input) -> i64 {
 ///     todo!()
