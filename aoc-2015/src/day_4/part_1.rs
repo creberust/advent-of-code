@@ -29,22 +29,15 @@ pub fn solve(input: &Input) -> i64 {
 
 #[cfg(test)]
 mod tests {
+    use common::{check, Checker};
+
     use super::*;
 
-    fn check(input: impl AsRef<str>, expected: i64) {
-        // Given
-        let input = Input::Text(String::from(input.as_ref()));
-
-        // When
-        let result = solve(&input);
-
-        // Then
-        assert_eq!(result, expected);
-    }
+    const CHECKER: Checker = Checker::new(solve);
 
     #[test]
     fn simple() {
-        check("abcdef", 609043);
-        check("pqrstuv", 1048970);
+        check!("abcdef", 609043);
+        check!("pqrstuv", 1048970);
     }
 }

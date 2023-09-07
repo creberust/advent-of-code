@@ -51,23 +51,16 @@ fn update_pos(pos: Position, dir: Direction) -> Position {
 
 #[cfg(test)]
 mod tests {
+    use common::{check, Checker};
+
     use super::*;
 
-    fn check(input: impl AsRef<str>, expected: i64) {
-        // Given
-        let input = Input::Text(String::from(input.as_ref()));
-
-        // When
-        let result = solve(&input);
-
-        // Then
-        assert_eq!(result, expected);
-    }
+    const CHECKER: Checker = Checker::new(solve);
 
     #[test]
     fn simple() {
-        check("^v", 3);
-        check("^>v<", 3);
-        check("^v^v^v^v^v", 11);
+        check!("^v", 3);
+        check!("^>v<", 3);
+        check!("^v^v^v^v^v", 11);
     }
 }

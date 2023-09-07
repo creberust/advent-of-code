@@ -22,42 +22,35 @@ pub fn solve(input: &Input) -> i64 {
 
 #[cfg(test)]
 mod tests {
+    use common::{check, Checker};
+
     use super::*;
 
-    fn check(input: impl AsRef<str>, expected: i64) {
-        // Given
-        let input = Input::Text(String::from(input.as_ref()));
-
-        // When
-        let result = solve(&input);
-
-        // Then
-        assert_eq!(result, expected);
-    }
+    const CHECKER: Checker = Checker::new(solve);
 
     #[test]
     fn zero() {
-        check("", 0);
-        check("(())", 0);
-        check("()()", 0);
+        check!("", 0);
+        check!("(())", 0);
+        check!("()()", 0);
     }
 
     #[test]
     fn three() {
-        check("(((", 3);
-        check("(()(()(", 3);
-        check("))(((((", 3);
+        check!("(((", 3);
+        check!("(()(()(", 3);
+        check!("))(((((", 3);
     }
 
     #[test]
     fn minus_one() {
-        check("())", -1);
-        check("))(", -1);
+        check!("())", -1);
+        check!("))(", -1);
     }
 
     #[test]
     fn minus_three() {
-        check(")))", -3);
-        check(")())())", -3);
+        check!(")))", -3);
+        check!(")())())", -3);
     }
 }
