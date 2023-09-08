@@ -20,5 +20,5 @@ pub use input::*;
 pub use part::*;
 pub use puzzle::*;
 pub use solution::*;
-pub use solver::*;
+pub use solver::Solver;
 pub use year::*;

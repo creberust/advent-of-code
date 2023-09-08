@@ -47,12 +47,19 @@ impl Checker {
     /// Check for a solution with a given `input` with a result `expected`.
     pub fn check(&self, input: impl AsRef<str>, expected: i64) {
         // Given
-        let input = Input::Text(String::from(input.as_ref()));
+        let inp = Input::Text(String::from(input.as_ref()));
 
         // When
-        let result = (self.sol)(&input);
+        let result = (self.sol)(&inp);
 
         // Then
-        assert_eq!(result, expected);
+        assert_eq!(
+            result,
+            expected,
+            "solve({}) = {}, expected = {}",
+            input.as_ref(),
+            result,
+            expected
+        );
     }
 }
