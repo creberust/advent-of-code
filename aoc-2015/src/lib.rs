@@ -5,6 +5,7 @@ mod day_2;
 mod day_3;
 mod day_4;
 mod day_5;
+mod day_6;
 
 pub fn event() -> Event {
     Event::new(
@@ -15,6 +16,7 @@ pub fn event() -> Event {
             day_3::puzzle(),
             day_4::puzzle(),
             day_5::puzzle(),
+            day_6::puzzle(),
         ]
         .into_iter(),
     )
