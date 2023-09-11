@@ -1,4 +1,4 @@
-use super::position::Position;
+use crate::day_6::position::Position;
 
 const SIZE: u32 = 1000;
 const GRID_SIZE: u32 = SIZE * SIZE;

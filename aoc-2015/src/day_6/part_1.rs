@@ -2,7 +2,10 @@ use std::io::BufRead;
 
 use common::Input;
 
-use super::{grid::Grid, instruction::Instruction, position::Position};
+mod grid;
+
+use super::{instruction::Instruction, position::Position};
+use grid::Grid;
 
 pub fn solve(input: &Input) -> i64 {
     let mut instructions = Vec::<(Instruction, (Position, Position))>::new();

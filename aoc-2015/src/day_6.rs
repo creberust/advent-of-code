@@ -1,6 +1,5 @@
 use common::{Day, Puzzle, Solver};
 
-mod grid;
 mod instruction;
 mod position;
 
