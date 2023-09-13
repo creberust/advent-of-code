@@ -59,8 +59,6 @@ pub fn solve(input: &Input) -> i64 {
         }
     }
 
-    print(&wires);
-
     compute(
         &wires,
         wires.get(&Wire::new("a")).unwrap(),
@@ -68,12 +66,8 @@ pub fn solve(input: &Input) -> i64 {
     ) as i64
 }
 
-fn print(wires: &HashMap<Wire, Expr>) {
-    for (key, value) in wires {
-        println!("{} -> {}", value, key);
-    }
-}
-
+/// Compute the value of an `expr` with a set of `wires`.
+/// We need to provide some `cache` to speed up the process.
 fn compute(wires: &HashMap<Wire, Expr>, expr: &Expr, cache: &mut HashMap<Wire, u16>) -> u16 {
     log::trace!("exec: {}", expr);
 
@@ -122,6 +116,21 @@ mod tests {
     fn simple() {
         check!("42 -> a", 42);
         check!("42 -> b\nNOT b -> a", !(42 as u16) as i64);
-        check!("42 -> b\nNOT b -> a", !(42 as u16) as i64);
+        check!(
+            "42 -> b\n564 -> c\nb AND c -> a",
+            ((42 as u16) & (564 as u16)) as i64
+        );
+        check!(
+            "42 -> b\n564 -> c\nb OR c -> a",
+            ((42 as u16) | (564 as u16)) as i64
+        );
+        check!(
+            "42 -> b\n5 -> c\nb LSHIFT c -> a",
+            ((42 as u16) << (5 as u16)) as i64
+        );
+        check!(
+            "42 -> b\n4 -> c\nb RSHIFT c -> a",
+            ((42 as u16) >> (4 as u16)) as i64
+        );
     }
 }
