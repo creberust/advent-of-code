@@ -19,6 +19,7 @@ impl AdventOfCode {
             events: [
                 (Year::from(2015), aoc_2015::event()),
                 (Year::from(2022), aoc_2022::event()),
+                (Year::from(2023), aoc_2023::event()),
             ]
             .into(),
         }
@@ -34,7 +35,7 @@ impl AdventOfCode {
         for event in self.events.values() {
             println!("{}", event);
 
-            self.solve_all_days(&event)
+            self.solve_all_days(event)
         }
     }
 

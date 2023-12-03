@@ -1,5 +1,6 @@
 [workspace]
-members = ["aoc", "aoc-2022", "common"]
+members = ["aoc", "aoc-2022", "aoc-2023", "common"]
+resolver = "2"
 
 [workspace.package]
 authors = ["creberust"]

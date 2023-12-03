@@ -10,7 +10,7 @@ impl Year {
     /// The minimum year of the Advent of Code event.
     const MIN: u16 = 2015;
     /// The maximum recent year of the Advent of Code event.
-    const MAX: u16 = 2022;
+    const MAX: u16 = 2023;
 
     /// The first year of the Advent of Code event.
     pub const FIRST: Year = Year(Self::MIN);
@@ -27,7 +27,7 @@ impl Year {
 
 impl From<u16> for Year {
     fn from(value: u16) -> Self {
-        if value < Self::MIN || value > Self::MAX {
+        if !(Self::MIN..=Self::MAX).contains(&value) {
             panic!(
                 "Invalid value for Year: {} ∉ [{}, {}]",
                 value,

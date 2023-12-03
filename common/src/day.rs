@@ -29,7 +29,7 @@ impl Day {
 
 impl From<u8> for Day {
     fn from(value: u8) -> Self {
-        if value < Self::MIN || value > Self::MAX {
+        if !(Self::MIN..=Self::MAX).contains(&value) {
             panic!(
                 "Invalid value for Day: {} ∉ [{}, {}]",
                 value,
