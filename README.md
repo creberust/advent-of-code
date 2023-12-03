@@ -19,4 +19,4 @@ The AdventofCode website: <https://adventofcode.com/>
 
 ## Author
 
-Creberus <creberus@tutanota.com>
+Benjamin "creberust" Peter 

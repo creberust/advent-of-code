@@ -2,9 +2,9 @@
 members = ["aoc", "aoc-2022", "common"]
 
 [workspace.package]
-authors = ["Creberus <creberus@tutanota.com>"]
+authors = ["creberust"]
 readme = "README.md"
-repository = "https://github.com/Creberus/advent-of-code"
+repository = "https://github.com/creberust/advent-of-code"
 license-file = "LICENSE"
 keywords = ["adventofcode"]
 publish = false
