@@ -8,7 +8,7 @@ pub struct Cli {
     /// The advent of code event for the given year.
     ///
     /// By default, every year will be solved.
-    #[arg(value_parser = value_parser!(u16).range(2015..=2022))]
+    #[arg(value_parser = value_parser!(u16).range(2015..=2023))]
     pub year: Option<u16>,
 
     /// The day from the selected advent of code event.
